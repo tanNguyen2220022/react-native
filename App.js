@@ -13,7 +13,7 @@ export default function App() {
       {/* <WelcomeScreen></WelcomeScreen> */}
       {/* <LoginScreen></LoginScreen> */}
       {/* <LinkingIdScreen></LinkingIdScreen> */}
-      <Test></Test>
+      {/* <Test></Test> */}
       <StatusBar style="inverted" />
     </>
   );

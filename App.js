@@ -5,6 +5,7 @@ import WelcomeScreen from "./suachuadien/screens/WelcomeScreen";
 import LoginScreen from "./suachuadien/screens/LoginScreen";
 import LinkingIdScreen from "./suachuadien/screens/LinkingIdScreen";
 import Test from "./suachuadien/screens/Test";
+import PersonalInfosScreen from "./suachuadien/screens/PersonalInfosScreen";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       {/* <LoginScreen></LoginScreen> */}
       {/* <LinkingIdScreen></LinkingIdScreen> */}
       {/* <Test></Test> */}
+      <PersonalInfosScreen></PersonalInfosScreen>
       <StatusBar style="inverted" />
     </>
   );

@@ -53,7 +53,6 @@ function Test(props) {
       <Switch
         value={isNew}
         onValueChange={(newValue) => setIsNew(newValue)}
-        style={{ bottom: 0 }}
       />
       <DatePicker />
     </NoScrollScreen>

@@ -10,10 +10,35 @@ import Screen from "./suachuadien/components/Screen";
 
 // import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { Button, Text } from "react-native";
+
+const Link = () => {
+  const navigation = useNavigation();
+  return (
+    <Button title="Click" onPress={() => navigation.navigate("TweetDetails")} />
+  );
+};
+
+const Tweets = ({ navigation }) => (
+  <Screen title="Navigation Test">
+    <Text>Tweets</Text>
+    <Link />
+  </Screen>
+);
+const TweetDetails = () => (
+  <Screen title="Navigation Test">
+    <Text>TweetDetails</Text>
+  </Screen>
+);
 
 const Stack = createStackNavigator();
-
-const Tweet = () => <Screen title="Navigation Test"></Screen>;
+const StackNavigator = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Tweets" component={Tweets} />
+    <Stack.Screen name="TweetDetails" component={TweetDetails} />
+  </Stack.Navigator>
+);
 
 export default function App() {
   return (
@@ -23,7 +48,10 @@ export default function App() {
       {/* <LoginScreen></LoginScreen> */}
       {/* <LinkingIdScreen></LinkingIdScreen> */}
       {/* <Test></Test> */}
-      <PersonalInfosScreen></PersonalInfosScreen>
+      {/* <PersonalInfosScreen></PersonalInfosScreen> */}
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
       <StatusBar style="inverted" />
     </>
   );

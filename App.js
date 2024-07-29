@@ -8,36 +8,64 @@ import Test from "./suachuadien/screens/Test";
 import PersonalInfosScreen from "./suachuadien/screens/PersonalInfosScreen";
 import Screen from "./suachuadien/components/Screen";
 
-// import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { Button, Text } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Link = () => {
   const navigation = useNavigation();
   return (
-    <Button title="Click" onPress={() => navigation.navigate("TweetDetails")} />
+    <Button
+      title="Tweet Details"
+      onPress={() => navigation.navigate("Tweet Details", { id: 123 })}
+    />
   );
 };
 
 const Tweets = ({ navigation }) => (
-  <Screen title="Navigation Test">
+  <Screen title="Tweets">
     <Text>Tweets</Text>
     <Link />
   </Screen>
 );
-const TweetDetails = () => (
-  <Screen title="Navigation Test">
-    <Text>TweetDetails</Text>
+
+const TweetDetails = ({ route }) => (
+  <Screen title="Tweet Details">
+    <Text>Tweet Details {route.params.id}</Text>
   </Screen>
 );
 
 const Stack = createStackNavigator();
 const StackNavigator = () => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    screenOptions={{
+      headerStyle: { backgroundColor: "blue" },
+      headerTintColor: "white",
+      // headerShown: false,
+    }}
+  >
     <Stack.Screen name="Tweets" component={Tweets} />
-    <Stack.Screen name="TweetDetails" component={TweetDetails} />
+    <Stack.Screen
+      name="Tweet Details"
+      component={TweetDetails}
+      options={({ route }) => ({ title: route.params.id })}
+    />
   </Stack.Navigator>
+);
+
+const Account = () => (
+  <Screen title={"Account"}>
+    <Text>Account</Text>
+  </Screen>
+);
+
+const Tab = createBottomTabNavigator();
+const TabNavigator = () => (
+  <Tab.Navigator>
+    <Tab.Screen name="Feed" component={Tweets} />
+    <Tab.Screen name="Account" component={Account} />
+  </Tab.Navigator>
 );
 
 export default function App() {
@@ -50,9 +78,8 @@ export default function App() {
       {/* <Test></Test> */}
       {/* <PersonalInfosScreen></PersonalInfosScreen> */}
       <NavigationContainer>
-        <StackNavigator />
+        <TabNavigator />
       </NavigationContainer>
-      <StatusBar style="inverted" />
     </>
   );
 }
